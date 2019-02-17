@@ -1,18 +1,23 @@
 import React from "react";
+import AppContext from './contexte';
 
 export class TodoItem extends React.Component {
   render() {
     return (
-      <li>
-        {this.props.itemContent}
-        <button
-          onClick={e => {
-            this.props.removeMe(e, this.props.itemId);
-          }}
-        >
-          x
-        </button>
-      </li>
+      <AppContext.Consumer>
+        {context => (
+          <li>
+            {this.props.item.content}
+            <button
+              onClick={e => {
+                context.removeItem(e, this.props.item.id);
+              }}
+            >
+              x
+            </button>
+          </li>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
