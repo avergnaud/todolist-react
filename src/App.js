@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import "./App.css";
-import TodoContainer from "./TodoContainer";
-import { AppProvider } from "./AppProvider";
+import TodoContainer from "./components/TodoContainer";
+import { AppProvider } from "./components/AppProvider";
+import InputForm from "./components/InputForm";
 
 class App extends Component {
   render() {
     return (
       <AppProvider>
-        <TodoContainer />
+          <InputForm />
+          <TodoContainer />
       </AppProvider>
     );
   }

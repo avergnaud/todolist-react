@@ -1,33 +1,39 @@
 import React, { Component } from "react";
 import AppContext from "./contexte";
+const uuidv4 = require('uuid/v4');
 
 export class AppProvider extends Component {
   state = {
     items: [
-      { id: "1", content: "faire ceci" },
-      { id: "2", content: "faire cela" }
+      { id: uuidv4(), content: "faire ceci" },
+      { id: uuidv4(), content: "faire cela" }
     ]
   };
 
   removeItem = (event, itemId) => {
-    //do with event
-    console.log(itemId);
-
     this.setState({
       items: this.state.items.filter(item => item.id !== itemId)
     });
   };
 
+  addItem = (event, itemContent) => {
+    const items = this.state.items
+    items.push({ id: uuidv4(), content: itemContent });
+    this.setState({
+      items
+    });
+  };
+
   render() {
-    const { children } = this.props;
     return (
       <AppContext.Provider
         value={{
           state: this.state,
-          removeItem: this.removeItem
+          removeItem: this.removeItem,
+          addItem: this.addItem
         }}
       >
-        {children}
+        {this.props.children}
       </AppContext.Provider>
     );
   }
