@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { TodoItem } from "./TodoItem"
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.sate = {
+      items: [{id:"1", content:"faire ceci"}, {id:"2", content:"faire cela"}]
+    }
+  }
+
+  removeItem = (event, someParameter) => {
+    //do with event
+    console.log(someParameter)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <TodoItem itemId="1" itemContent="faire ceci" removeMe={this.removeItem} />
+        <TodoItem itemId="2" itemContent="faire cela" removeMe={this.removeItem} />
+      </React.Fragment>
     );
   }
 }
